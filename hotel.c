@@ -3,11 +3,12 @@
 #include <time.h>
 #include <string.h>
 
-void quartosOcupados(int reservasOcupadas[180][6][7]) //Inicializa quartos.
+void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
 {
     int i, j, q, randI, randJ, randQ, contLugarOcup=0, cpf, aux=0;
 
-    for(q = 0; q < 180; q++)
+    srand(time(0));
+    for(q = 0; q < 181; q++)
     {
         for (i = 0; i<6; i++) //Limpa as listas de reservas dos quartos.
         {
@@ -20,7 +21,7 @@ void quartosOcupados(int reservasOcupadas[180][6][7]) //Inicializa quartos.
 
     while (contLugarOcup <= 1000) //Preenche os quartos vagos aleatoriamente.
     {
-        randQ = rand ()% 180;
+        randQ = rand ()% 181;
         randI =  rand()%6;
         randJ = rand()%7;
         aux = 0;
@@ -51,27 +52,28 @@ void quartosOcupados(int reservasOcupadas[180][6][7]) //Inicializa quartos.
     }
     return;
 }
-int exibirReservas (int reservasOcupadas[180][6][7]) //Exibe as vagas de todos os quartos existentes.
+int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos os quartos existentes.
 {
     int i, j, q, dia = 1, andar=1, quarto=101;
-    for(q = 0; q < 180; q++ )
+    for(q = 0; q < 181; q++ )
     {
-        printf("Dia %d", dia);
+        printf("\n[   Dia %d   ]", dia);
         dia++;
 
         for (i = 0; i<6; i++) //Imprimir Reservas já feitas
         {
-            printf("\n\n*** Andar %d ***\n", andar);
+            printf("\n*** Andar %d ***\n", andar);
 
             for(j=0; j<7; j++)
             {
                 printf("%d - %09d ", quarto, reservasOcupadas[q][i][j]);
                 quarto ++;
             }
-            printf("\n");
+            printf("\n\n");
             andar ++;
 
-            if(andar == 7 ){
+            if(andar == 7 )
+            {
                 andar = 1;
             }
 
@@ -80,14 +82,14 @@ int exibirReservas (int reservasOcupadas[180][6][7]) //Exibe as vagas de todos o
                 quarto = quarto + 93;
             }
             if(quarto > 607)
-                    quarto = 101;
+                quarto = 101;
         }
     }
 }
 
 int main()
 {
-    int reservasOcupadas [180][6][7];
+    int reservasOcupadas [181][6][7];
 
     quartosOcupados(reservasOcupadas);    // chama a funcao de preencher automaticamente os dados
     exibirReservas(reservasOcupadas);      //mostrar todas as vagas
