@@ -3,26 +3,30 @@
 #include <time.h>
 #include <string.h>
 
-void quartosOcupados(int reservasOcupadas[6][7]) //Inicializa quartos.
+void quartosOcupados(int reservasOcupadas[180][6][7]) //Inicializa quartos.
 {
-    int i, j, randI, randJ, contLugarOcup=0, cpf, aux=0;
+    int i, j, q, randI, randJ, randQ, contLugarOcup=0, cpf, aux=0;
 
-    for (i = 0; i<6; i++) //Limpa as listas de reservas dos quartos.
+    for(q = 0; q < 180; q++)
     {
-        for(j=0; j<7; j++)
+        for (i = 0; i<6; i++) //Limpa as listas de reservas dos quartos.
         {
-            reservasOcupadas[i][j] = 0;
+            for(j=0; j<7; j++)
+            {
+                reservasOcupadas[q][i][j] = 0;
+            }
         }
     }
 
-    while (contLugarOcup<= 20) //Preenche os quartos vagos aleatoriamente.
+    while (contLugarOcup <= 1000) //Preenche os quartos vagos aleatoriamente.
     {
+        randQ = rand ()% 180;
         randI =  rand()%6;
         randJ = rand()%7;
         aux = 0;
 
         //Verifica se o quarto esta vago.
-        if (reservasOcupadas[randI][randJ] == 0)
+        if (reservasOcupadas[randQ][randI][randJ] == 0)
         {
             cpf=(rand()%1000)*1000000;
             cpf=cpf+(rand()%1000)*1000;
@@ -30,47 +34,60 @@ void quartosOcupados(int reservasOcupadas[6][7]) //Inicializa quartos.
 
             //Verifica se o usuario ja esta em alguma reserva.
 
-                for (j=0; j<7; j++)
+            for (j=0; j<7; j++)
+            {
+                if (cpf==reservasOcupadas[randQ][randI][j])
                 {
-                    if (cpf==reservasOcupadas[randI][j])
-                    {
-                        aux = 1; //Indica que o cliente ja possui reserva.
-                    }
-
+                    aux = 1; //Indica que o cliente ja possui reserva.
                 }
+
+            }
             if (aux==0)  // Adiciona o cliente ao quarto.
             {
-                reservasOcupadas[randI][randJ] = cpf;
+                reservasOcupadas[randQ][randI][randJ] = cpf;
                 contLugarOcup ++;
             }
         }
     }
     return;
 }
-int exibirReservas (int reservasOcupadas[6][7]) //Exibe as vagas de todos os quartos existentes.
+int exibirReservas (int reservasOcupadas[180][6][7]) //Exibe as vagas de todos os quartos existentes.
 {
-    int i, j, andar=1, quarto=101;
-    for (i = 0; i<6; i++) //Imprimir Reservas já feitas
+    int i, j, q, dia = 1, andar=1, quarto=101;
+    for(q = 0; q < 180; q++ )
     {
-        printf("\n\n*** Andar %d ***\n", andar);
-        for(j=0; j<7; j++)
-        {
-            printf("%d - %09d ", quarto, reservasOcupadas[i][j]);
-            quarto ++;
-        }
-        printf("\n");
-        andar ++;
+        printf("Dia %d", dia);
+        dia++;
 
-        if (quarto==108 || quarto==208 || quarto==308 || quarto==408 || quarto==508)
+        for (i = 0; i<6; i++) //Imprimir Reservas já feitas
         {
-            quarto = quarto + 93;
+            printf("\n\n*** Andar %d ***\n", andar);
+
+            for(j=0; j<7; j++)
+            {
+                printf("%d - %09d ", quarto, reservasOcupadas[q][i][j]);
+                quarto ++;
+            }
+            printf("\n");
+            andar ++;
+
+            if(andar == 7 ){
+                andar = 1;
+            }
+
+            if (quarto==108 || quarto==208 || quarto==308 || quarto==408 || quarto==508 )
+            {
+                quarto = quarto + 93;
+            }
+            if(quarto > 607)
+                    quarto = 101;
         }
     }
 }
 
 int main()
 {
-    int reservasOcupadas [6][7];
+    int reservasOcupadas [180][6][7];
 
     quartosOcupados(reservasOcupadas);    // chama a funcao de preencher automaticamente os dados
     exibirReservas(reservasOcupadas);      //mostrar todas as vagas
