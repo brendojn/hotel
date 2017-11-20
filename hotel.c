@@ -166,7 +166,4 @@ int main()
     quartosOcupados(reservasOcupadas);    // chama a funcao de preencher automaticamente os dados
     exibirReservas(reservasOcupadas);      //mostrar todas as vagas
 
-
-
-
 }
