@@ -72,7 +72,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
             sprintf(fev, "[FEVEREIRO]");
             for(int i = 0; i < strlen(fev); i++)
             {
-                printf("%c ", fev[i]);
+                printf("%c", fev[i]);
             }
         }
         if(reservasOcupadas[q] == reservasOcupadas[59])
@@ -80,7 +80,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
             sprintf(mar, "[MARCO]");
             for(int i = 0; i < strlen(mar); i++)
             {
-                printf("%c ", mar[i]);
+                printf("%c", mar[i]);
             }
         }
         if(reservasOcupadas[q] == reservasOcupadas[90])
@@ -88,7 +88,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
             sprintf(abr, "[ABRIL]");
             for(int i = 0; i < strlen(abr); i++)
             {
-                printf("%c ", abr[i]);
+                printf("%c", abr[i]);
             }
         }
         if(reservasOcupadas[q] == reservasOcupadas[120])
@@ -96,7 +96,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
             sprintf(mai, "[MAIO]");
             for(int i = 0; i < strlen(mai); i++)
             {
-                printf("%c ", mai[i]);
+                printf("%c", mai[i]);
             }
         }
         if(reservasOcupadas[q] == reservasOcupadas[151])
@@ -104,7 +104,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
             sprintf(jun, "[JUNHO]");
             for(int i = 0; i < strlen(jun); i++)
             {
-                printf("%c ", jun[i]);
+                printf("%c", jun[i]);
             }
         }
 
