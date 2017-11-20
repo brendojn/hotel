@@ -21,9 +21,9 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
 
     while (contLugarOcup <= 1000) //Preenche os quartos vagos aleatoriamente.
     {
-        randQ = rand ()% 181;
-        randI =  rand()%6;
-        randJ = rand()%7;
+        randQ = rand ()% 182;
+        randI =  rand()%7;
+        randJ = rand()%8;
         aux = 0;
 
         //Verifica se o quarto esta vago.
