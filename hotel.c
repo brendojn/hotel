@@ -59,60 +59,77 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
     for(q = 0; q < 181; q++ )
     {
         //Indica os meses
-        if(reservasOcupadas[q] == reservasOcupadas[0]){
-        sprintf(jan, "[JANEIRO]");
-        for(int i = 0; i < strlen(jan); i++){
-        printf("%c", jan[i]);
+        if(reservasOcupadas[q] == reservasOcupadas[0])
+        {
+            sprintf(jan, "[JANEIRO]");
+            for(int i = 0; i < strlen(jan); i++)
+            {
+                printf("%c", jan[i]);
+            }
         }
+        if(reservasOcupadas[q] == reservasOcupadas[31])
+        {
+            sprintf(fev, "[FEVEREIRO]");
+            for(int i = 0; i < strlen(fev); i++)
+            {
+                printf("%c ", fev[i]);
+            }
         }
-        if(reservasOcupadas[q] == reservasOcupadas[31]){
-        sprintf(fev, "[FEVEREIRO]");
-        for(int i = 0; i < strlen(fev); i++){
-        printf("%c ", fev[i]);
+        if(reservasOcupadas[q] == reservasOcupadas[59])
+        {
+            sprintf(mar, "[MARCO]");
+            for(int i = 0; i < strlen(mar); i++)
+            {
+                printf("%c ", mar[i]);
+            }
         }
+        if(reservasOcupadas[q] == reservasOcupadas[90])
+        {
+            sprintf(abr, "[ABRIL]");
+            for(int i = 0; i < strlen(abr); i++)
+            {
+                printf("%c ", abr[i]);
+            }
         }
-        if(reservasOcupadas[q] == reservasOcupadas[59]){
-        sprintf(mar, "[MARCO]");
-        for(int i = 0; i < strlen(mar); i++){
-        printf("%c ", mar[i]);
+        if(reservasOcupadas[q] == reservasOcupadas[120])
+        {
+            sprintf(mai, "[MAIO]");
+            for(int i = 0; i < strlen(mai); i++)
+            {
+                printf("%c ", mai[i]);
+            }
         }
+        if(reservasOcupadas[q] == reservasOcupadas[151])
+        {
+            sprintf(jun, "[JUNHO]");
+            for(int i = 0; i < strlen(jun); i++)
+            {
+                printf("%c ", jun[i]);
+            }
         }
-        if(reservasOcupadas[q] == reservasOcupadas[90]){
-        sprintf(abr, "[ABRIL]");
-        for(int i = 0; i < strlen(abr); i++){
-        printf("%c ", abr[i]);
-        }
-        }
-        if(reservasOcupadas[q] == reservasOcupadas[120]){
-        sprintf(mai, "[MAIO]");
-        for(int i = 0; i < strlen(mai); i++){
-        printf("%c ", mai[i]);
-        }
-        }
-        if(reservasOcupadas[q] == reservasOcupadas[151]){
-        sprintf(jun, "[JUNHO]");
-        for(int i = 0; i < strlen(jun); i++){
-        printf("%c ", jun[i]);
-        }
-        }
+
         //Indica os dias
         printf("\n   ###Dia %d###   ", dia);
         dia++;
-        if(reservasOcupadas[q] == reservasOcupadas[30]){
-        dia = 1;
-
+        if(reservasOcupadas[q] == reservasOcupadas[30])
+        {
+            dia = 1;
         }
-        if(reservasOcupadas[q] == reservasOcupadas[58]){
-        dia = 1;
+        if(reservasOcupadas[q] == reservasOcupadas[58])
+        {
+            dia = 1;
         }
-        if(reservasOcupadas[q] == reservasOcupadas[89]){
-        dia = 1;
+        if(reservasOcupadas[q] == reservasOcupadas[89])
+        {
+            dia = 1;
         }
-        if(reservasOcupadas[q] == reservasOcupadas[119]){
-        dia = 1;
+        if(reservasOcupadas[q] == reservasOcupadas[119])
+        {
+            dia = 1;
         }
-        if(reservasOcupadas[q] == reservasOcupadas[150]){
-        dia = 1;
+        if(reservasOcupadas[q] == reservasOcupadas[150])
+        {
+            dia = 1;
         }
 
         for (i = 0; i<6; i++) //Imprimir Reservas já feitas
