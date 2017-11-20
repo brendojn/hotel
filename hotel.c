@@ -21,9 +21,9 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
 
     while (contLugarOcup <= 1000) //Preenche os quartos vagos aleatoriamente.
     {
-        randQ = rand ()% 182;
-        randI =  rand()%7;
-        randJ = rand()%8;
+        randQ = rand ()% 181;
+        randI =  rand()%6;
+        randJ = rand()%7;
         aux = 0;
 
         //Verifica se o quarto esta vago.
@@ -55,10 +55,64 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
 int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos os quartos existentes.
 {
     int i, j, q, dia = 1, andar=1, quarto=101;
+    char jan[15], fev[15], mar[15], abr[15], mai[15], jun[15];
     for(q = 0; q < 181; q++ )
     {
-        printf("\n[   Dia %d   ]", dia);
+        if(reservasOcupadas[q] == reservasOcupadas[0]){
+        sprintf(jan, "[JANEIRO]");
+        for(int i = 0; i < strlen(jan); i++){
+        printf("%c", jan[i]);
+        }
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[31]){
+        sprintf(fev, "[FEVEREIRO]");
+        for(int i = 0; i < strlen(fev); i++){
+        printf("%c ", fev[i]);
+        }
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[59]){
+        sprintf(mar, "[MARCO]");
+        for(int i = 0; i < strlen(mar); i++){
+        printf("%c ", mar[i]);
+        }
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[90]){
+        sprintf(abr, "[ABRIL]");
+        for(int i = 0; i < strlen(abr); i++){
+        printf("%c ", abr[i]);
+        }
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[120]){
+        sprintf(mai, "[MAIO]");
+        for(int i = 0; i < strlen(mai); i++){
+        printf("%c ", mai[i]);
+        }
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[151]){
+        sprintf(jun, "[JUNHO]");
+        for(int i = 0; i < strlen(jun); i++){
+        printf("%c ", jun[i]);
+        }
+        }
+
+        printf("\n   ###Dia %d###   ", dia);
         dia++;
+        if(reservasOcupadas[q] == reservasOcupadas[30]){
+        dia = 1;
+
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[58]){
+        dia = 1;
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[89]){
+        dia = 1;
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[119]){
+        dia = 1;
+        }
+        if(reservasOcupadas[q] == reservasOcupadas[150]){
+        dia = 1;
+        }
 
         for (i = 0; i<6; i++) //Imprimir Reservas já feitas
         {
