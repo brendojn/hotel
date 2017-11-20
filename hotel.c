@@ -58,6 +58,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
     char jan[15], fev[15], mar[15], abr[15], mai[15], jun[15];
     for(q = 0; q < 181; q++ )
     {
+        //Indica os meses
         if(reservasOcupadas[q] == reservasOcupadas[0]){
         sprintf(jan, "[JANEIRO]");
         for(int i = 0; i < strlen(jan); i++){
@@ -94,7 +95,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
         printf("%c ", jun[i]);
         }
         }
-
+        //Indica os dias
         printf("\n   ###Dia %d###   ", dia);
         dia++;
         if(reservasOcupadas[q] == reservasOcupadas[30]){
