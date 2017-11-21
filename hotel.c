@@ -5,6 +5,7 @@
 
 int diasReservados()
 {
+
     int random = 3 + rand() % 5;
 
     return random;
@@ -14,7 +15,7 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
 {
     int i, j, q, randI, randJ, randQ, contLugarOcup=0, cpf, aux=0;
 
-    srand(time(0));
+
     for(q = 0; q < 181; q++)
     {
         for (i = 0; i<6; i++) //Limpa as listas de reservas dos quartos.
@@ -59,7 +60,6 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
                 {
                     reservasOcupadas[randQ][randI][randJ] = cpf;
                     randQ++;
-
                 }
 
                 contLugarOcup ++;
