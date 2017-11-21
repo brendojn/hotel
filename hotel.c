@@ -3,6 +3,13 @@
 #include <time.h>
 #include <string.h>
 
+int diasReservados()
+{
+    int random = 3 + rand() % 5;
+
+    return random;
+}
+
 void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
 {
     int i, j, q, randI, randJ, randQ, contLugarOcup=0, cpf, aux=0;
@@ -24,6 +31,7 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
         randQ = rand ()% 181;
         randI =  rand()%6;
         randJ = rand()%7;
+
         aux = 0;
 
         //Verifica se o quarto esta vago.
@@ -45,7 +53,15 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
             }
             if (aux==0)  // Adiciona o cliente ao quarto.
             {
-                reservasOcupadas[randQ][randI][randJ] = cpf;
+                int random = randQ + diasReservados();
+
+                while(randQ <= random)
+                {
+                    reservasOcupadas[randQ][randI][randJ] = cpf;
+                    randQ++;
+
+                }
+
                 contLugarOcup ++;
             }
         }
