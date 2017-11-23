@@ -2,10 +2,16 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+int camas(){
+    int c;
 
+    c = 1 +rand()% 3;
+    return c;
+
+}
 void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
 {
-    int i, j, q, randI, randJ, randQ, contLugarOcup=0, aux=0, randomico, random = 0;
+    int i, j, q, randI, randJ, randQ, contLugarOcup=0, aux=0, randomico, random = 0, randC, c;
     int cpf;
 
     for(q = 0; q < 181; q++)
@@ -24,6 +30,8 @@ void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
         randQ = rand ()% 182;
         randI =  rand()%7;
         randJ = rand()%8;
+
+
 
         aux = 0;
         //Verifica se o quarto esta vago.
@@ -143,7 +151,10 @@ int exibirReservas (int *reservasOcupadas[181][6][7]) //Exibe as vagas de todos 
 
             for(j=0; j<7; j++)
             {
-                printf("%d - %011d ", quarto, reservasOcupadas[q][i][j]);
+
+                printf("%d - %010d ", quarto, reservasOcupadas[q][i][j]);
+
+                printf("%d cama(s)    ", camas());
                 quarto ++;
             }
             printf("\n\n");
@@ -174,7 +185,7 @@ int incluirReserva(int andar, int quarto, int mes, int dia, int *reservasOcupada
 
     //CORRIGINDO OS DIAS PARA FAZER FICAR DE 1 A 180
     if(mes == 1){
-        if(dia >= 0 && dia <= 31){
+        if(dia >= 0 && dia <= 30){
             dia = dia - 1;
         }
     }
