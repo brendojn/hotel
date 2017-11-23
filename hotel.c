@@ -2,11 +2,87 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include "hotel.h"
+int* cpf_generator() {
+	int *cpf, pesos[11], vetSoma[11], soma, resto, digito,  i;
 
-void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
+	// Aloca memória para o cpf
+	cpf = (int *) malloc(sizeof(int) * 11);
+
+	// Gera 9 números aleatórios
+	for(i = 0; i < 9; i++) {
+		cpf[i] = rand() % 10;
+	}
+
+	// Cálculo do primeiro dígito verificador
+
+	// Gera os 9 pesos
+	for(i = 0; i < 9; i++) {
+		pesos[i] = 10 - i;
+	}
+
+	// Multiplica os valores de cada coluna
+	for(i = 0; i < 9; i++) {
+		vetSoma[i] = cpf[i] * pesos[i];
+	}
+
+	// Calcula o somatório dos resultados
+	soma = 0;
+	for(i = 0; i < 9; i++) {
+		soma += vetSoma[i];
+	}
+
+	// Realiza-se a divisão inteira do resultado por 11
+	resto = soma % 11;
+
+	// Verifica o resto da divisão
+	if(resto < 2) {
+		digito = 0;
+	} else {
+		digito = 11 - resto;
+	}
+
+	// Adiciona o 1º dígito verificador ao cpf
+	cpf[9] = digito;
+
+	// Cálculo do segundo dígito verificador
+
+	// Gera os 10 pesos
+	for(i = 0; i < 10; i++) {
+		pesos[i] = 11 - i;
+	}
+
+	// Multiplica os valores de cada coluna
+	for(i = 0; i < 10; i++) {
+		vetSoma[i] = cpf[i] * pesos[i];
+	}
+
+	// Calcula o somatório dos resultados
+	soma = 0;
+	for(i = 0; i < 10; i++) {
+		soma += vetSoma[i];
+	}
+
+	// Realiza-se a divisão inteira do resultado por 11
+	resto = soma % 11;
+
+	// Verifica o resto da divisão
+	if(resto < 2) {
+		digito = 0;
+	} else {
+		digito = 11 - resto;
+	}
+
+	// Adiciona o 2º dígito verificador ao cpf
+	cpf[10] = digito;
+
+	return cpf;
+}
+
+void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
 {
-    int i, j, q, randI, randJ, randQ, contLugarOcup=0, cpf, aux=0, randomico;
-
+    int i, j, q, randI, randJ, randQ, contLugarOcup=0, aux=0, randomico, random = 0;
+    int *cpf;
 
     for(q = 0; q < 181; q++)
     {
@@ -30,9 +106,7 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
         //Verifica se o quarto esta vago.
         if (reservasOcupadas[randQ][randI][randJ] == 0)
         {
-            cpf=(rand()%1000)*1000000;
-            cpf=cpf+(rand()%1000)*1000;
-            cpf=cpf+(rand()%1000);
+            cpf = cpf_generator();
 
             //Verifica se o usuario ja esta em alguma reserva.
 
@@ -48,13 +122,12 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
             {
                 randomico = 3 + rand() % 5;
 
-                int random = randQ + randomico;
+                random = randQ + randomico;
 
-                while(randQ <= random)
-                {
+
                     reservasOcupadas[randQ][randI][randJ] = cpf;
-                    randQ++;
-                }
+
+
 
 
                 contLugarOcup ++;
@@ -63,10 +136,11 @@ void quartosOcupados(int reservasOcupadas[181][6][7]) //Inicializa quartos.
     }
     return;
 }
-int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos os quartos existentes.
+int exibirReservas (int *reservasOcupadas[181][6][7]) //Exibe as vagas de todos os quartos existentes.
 {
     int i, j, q, dia = 1, andar=1, quarto=101;
     char jan[15], fev[15], mar[15], abr[15], mai[15], jun[15];
+     int *cpf;
     for(q = 0; q < 181; q++ ) //Imprimir Reservas já feitas
     {
         //Indica os meses
@@ -149,6 +223,9 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
 
             for(j=0; j<7; j++)
             {
+            for(int i = 0; i < 11; i++) {
+            printf("%d", cpf[i]);
+            }
                 printf("%d - %09d ", quarto, reservasOcupadas[q][i][j]);
                 quarto ++;
             }
@@ -172,7 +249,7 @@ int exibirReservas (int reservasOcupadas[181][6][7]) //Exibe as vagas de todos o
 
 int main()
 {
-    int reservasOcupadas [181][6][7];
+    int reservasOcupadas[181][6][7];
 
     quartosOcupados(reservasOcupadas);    // chama a funcao de preencher automaticamente os dados
     exibirReservas(reservasOcupadas);      //mostrar todas as vagas
