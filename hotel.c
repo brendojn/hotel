@@ -50,6 +50,11 @@ void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
                 randomico = 3 + rand() % 5;
 
                 random = randQ + randomico;
+                // Populando o vetor camas com randomico de 1 a 3
+                for(int i = 0; i< 7063; i++)
+                {
+                    camas[i] = 1 + rand()% 3;
+                }
 
                 reservasOcupadas[randQ][randI][randJ] = cpf;
 
@@ -146,10 +151,7 @@ int exibirReservas (int *reservasOcupadas[181][6][7]) //Exibe as vagas de todos 
 
             for(j=0; j<7; j++)
             {
-                for(int i = 0; i< 7063; i++)
-                {
-                    camas[i] = 1 + rand()% 3;
-                }
+
                 printf("%d - %010d %d cama(s)    ", quarto, reservasOcupadas[q][i][j], camas[i]);
 
                 quarto ++;
