@@ -30,7 +30,7 @@ void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
         if (reservasOcupadas[randQ][randI][randJ] == 0)
         {
             // Guarda um numero de 10 dígitos
-            cpf= (100000000000 + rand()) % 999999999999;
+            cpf= 100000000000 + rand() % 999999999999;
 
             //Verifica se o usuario ja esta em alguma reserva.
 
@@ -49,9 +49,6 @@ void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
                 random = randQ + randomico;
 
                     reservasOcupadas[randQ][randI][randJ] = cpf;
-
-
-
 
                 contLugarOcup ++;
             }
@@ -146,7 +143,7 @@ int exibirReservas (int *reservasOcupadas[181][6][7]) //Exibe as vagas de todos 
 
             for(j=0; j<7; j++)
             {
-                printf("%d - %09d ", quarto, reservasOcupadas[q][i][j]);
+                printf("%d - %011d ", quarto, reservasOcupadas[q][i][j]);
                 quarto ++;
             }
             printf("\n\n");
