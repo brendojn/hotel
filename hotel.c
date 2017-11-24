@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+
+
 int camas[7062];
 
 void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
 {
-    int i, j, q, randI, randJ, randQ, contLugarOcup=0, aux=0, randomico, random = 0, randC, c;
+    int i, j, q, randI, randJ, randQ, contLugarOcup=0, aux=0, randomico, random = 0, randC, c, cpf1, cpf2;
     int cpf;
 
     for(q = 0; q < 181; q++)
@@ -33,7 +35,11 @@ void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
         if (reservasOcupadas[randQ][randI][randJ] == 0)
         {
             // Guarda um numero de 10 dígitos
-            cpf= 100000000000 + rand() % 999999999999;
+            cpf1 =  rand() % 10000;
+            cpf2 =  cpf1 +(rand() % 10000)*10000;
+            cpf  =  cpf2 + (rand()% 1000)* 1000000;
+
+
 
             //Verifica se o usuario ja esta em alguma reserva.
 
@@ -42,7 +48,7 @@ void quartosOcupados(int *reservasOcupadas[181][6][7]) //Inicializa quartos.
                 if (cpf==reservasOcupadas[randQ][randI][j])
                 {
                     aux = 1; //Indica que o cliente ja possui reserva.
-                }
+                }int dia = 1;
 
             }
             if (aux==0)  // Adiciona o cliente ao quarto.
@@ -174,499 +180,538 @@ int exibirReservas (int *reservasOcupadas[181][6][7]) //Exibe as vagas de todos 
     }
 }
 
-int incluirReserva(int andar, int quarto, int mes, int dia, int *reservasOcupadas[181][6][7])
-{
+int incluirReserva(int numcamas, int diaentrada, int mesentrada, int diasaida, int messaida, int cpf, int *reservasOcupadas[181][6][7]){
 
-    int dias,quartos;
-    int q,i,j;
-
-    //CORRIGINDO O MÊS
-    andar = andar - 1;
+    int diasentrada, diassaida, quartos;
+    int q,i,j,aux;
+    aux = 0;
+    int dia = 1;
+    int preco = 0;
 
     //CORRIGINDO OS DIAS PARA FAZER FICAR DE 1 A 180
-    if(mes == 1)
+    if(mesentrada == 1)
     {
-        if(dia >= 0 && dia <= 30)
+        if(diaentrada > 0 && diaentrada <= 30)
         {
-            dia = dia - 1;
+            diaentrada = diaentrada - 1;
         }
     }
-    if(mes == 2)
+    if(mesentrada == 2)
     {
-        dia = dia + 31;
+        diaentrada = diaentrada + 31;
     }
-    if(mes == 3)
+    if(mesentrada == 3)
     {
-        dia = dia + 59;
+        diaentrada = diaentrada + 59;
     }
-    if(mes == 4)
+    if(mesentrada == 4)
     {
-        dia = dia + 89;
+        diaentrada = diaentrada + 89;
     }
-    if(mes == 5)
+    if(mesentrada == 5)
     {
-        dia = dia + 119;
+        diaentrada = diaentrada + 119;
     }
-    if(mes == 6)
+    if(mesentrada == 6)
     {
-        dia = dia + 150;
-    }
-
-    dias = dia;
-
-
-    //CORRIGIR NUMERO DO QUARTO 538664004
-    if(quarto == 101)
-    {
-        quartos = 0;
-    }
-    if(quarto == 102)
-    {
-        quartos = 1;
-    }
-    if(quarto == 103)
-    {
-        quartos = 2;
-    }
-    if(quarto == 104)
-    {
-        quartos = 3;
-    }
-    if(quarto == 105)
-    {
-        quartos = 4;
-    }
-    if(quarto == 106)
-    {
-        quartos = 5;
-    }
-    if(quarto == 107)
-    {
-        quartos = 6;
-    }
-    if(quarto == 201)
-    {
-        quartos = 0;
-    }
-    if(quarto == 202)
-    {
-        quartos = 1;
-    }
-    if(quarto == 203)
-    {
-        quartos = 2;
-    }
-    if(quarto == 204)
-    {
-        quartos = 3;
-    }
-    if(quarto == 205)
-    {
-        quartos = 4;
-    }
-    if(quarto == 206)
-    {
-        quartos = 5;
-    }
-    if(quarto == 207)
-    {
-        quartos = 6;
-    }
-    if(quarto == 301)
-    {
-        quartos = 0;
-    }
-    if(quarto == 302)
-    {
-        quartos = 1;
-    }
-    if(quarto == 303)
-    {
-        quartos = 2;
-    }
-    if(quarto == 304)
-    {
-        quartos = 3;
-    }
-    if(quarto == 305)
-    {
-        quartos = 4;
-    }
-    if(quarto == 306)
-    {
-        quartos = 5;
-    }
-    if(quarto == 307)
-    {
-        quartos = 6;
-    }
-    if(quarto == 401)
-    {
-        quartos = 0;
-    }
-    if(quarto == 402)
-    {
-        quartos = 1;
-    }
-    if(quarto == 403)
-    {
-        quartos = 2;
-    }
-    if(quarto == 404)
-    {
-        quartos = 3;
-    }
-    if(quarto == 405)
-    {
-        quartos = 4;
-    }
-    if(quarto == 406)
-    {
-        quartos = 5;
-    }
-    if(quarto == 407)
-    {
-        quartos = 6;
-    }
-    if(quarto == 501)
-    {
-        quartos = 0;
-    }
-    if(quarto == 502)
-    {
-        quartos = 1;
-    }
-    if(quarto == 503)
-    {
-        quartos = 2;
-    }
-    if(quarto == 504)
-    {
-        quartos = 3;
-    }
-    if(quarto == 505)
-    {
-        quartos = 4;
-    }
-    if(quarto == 506)
-    {
-        quartos = 5;
-    }
-    if(quarto == 507)
-    {
-        quartos = 6;
-    }
-    if(quarto == 601)
-    {
-        quartos = 0;
-    }
-    if(quarto == 602)
-    {
-        quartos = 1;
-    }
-    if(quarto == 603)
-    {
-        quartos = 2;
-    }
-    if(quarto == 604)
-    {
-        quartos = 3;
-    }
-    if(quarto == 605)
-    {
-        quartos = 4;
-    }
-    if(quarto == 606)
-    {
-        quartos = 5;
-    }
-    if(quarto == 607)
-    {
-        quartos = 6;
+        diaentrada = diaentrada + 150;
     }
 
-    for(q=0; q<= 181; q++ )
+    diasentrada = diaentrada;
+
+    if(messaida == 1)
     {
-        for(i=0; i<=6; i++)
+        if(diasaida > 0 && diasaida <= 30)
         {
+            diasaida = diasaida - 1;
+        }
+    }
+    if(messaida == 2)
+    {
+        diasaida = diasaida + 31;
+    }
+    if(messaida == 3)
+    {
+        diasaida = diasaida + 59;
+    }
+    if(messaida == 4)
+    {
+        diasaida = diasaida + 89;
+    }
+    if(messaida == 5)
+    {
+        diasaida = diasaida + 119;
+    }
+    if(messaida == 6)
+    {
+        diasaida = diasaida + 150;
+    }
+
+    diassaida = diasaida;
+
+    if(diassaida <= 181 && diasentrada > 0){
+        for(q=diasentrada; q<diassaida; q++ )
+        {
+            for(i=0; i<6; i++)
+            {
+                printf("\n** Andar %d **\n", i+1);
+
+                for(j=0; j<=7; j++)
+                {
+                    if(reservasOcupadas[q][i][j] != cpf){
+                        if(reservasOcupadas[q][i][j] == 0){
+                            if(numcamas > 0 && numcamas <= 3){
+                                if(camas[i] == numcamas){
+                                    if(numcamas == 1){
+                                        preco = 117;
+                                    }
+                                    if(numcamas == 2){
+                                        preco = 150;
+                                    }
+                                    if(numcamas == 3){
+                                        preco = 180;
+                                    }
+                                    printf("Dia: %d - Andar: %d - Quarto: %d,  %d cama(s) -- PRECO: RS %d.::\n", q, i+1, j, camas[i], preco);
+                                    aux = aux +1;
+                                }
+                            }else{
+                                //printf("Numero de camas fornecidos errados, temos quartos de 1,2 e 3 camas.");
+                                return 5;
+                            }
+                        }else{
+                            return 2;
+                        }
+                    }else{
+                        return 3;
+                    }
+                }
+            }
+        }
+    }else{
+        return 1;
+    }
+}
+
+int confirmarReserva(int andar, int quarto, int numcamas, int diaentrada, int mesentrada, int diasaida, int messaida, int cpf, int *reservasOcupadas[181][6][7]){
+    int diasentrada, diassaida, quartos;
+    int q,i,j,aux;
+    aux = 0;
+    int dia = 1;
+    int preco = 0;
+
+    //CORRIGINDO OS DIAS PARA FAZER FICAR DE 1 A 180
+    if(mesentrada == 1)
+    {
+        if(diaentrada > 0 && diaentrada <= 30)
+        {
+            diaentrada = diaentrada - 1;
+        }
+    }
+    if(mesentrada == 2)
+    {
+        diaentrada = diaentrada + 31;
+    }
+    if(mesentrada == 3)
+    {
+        diaentrada = diaentrada + 59;
+    }
+    if(mesentrada == 4)
+    {
+        diaentrada = diaentrada + 89;
+    }
+    if(mesentrada == 5)
+    {
+        diaentrada = diaentrada + 119;
+    }
+    if(mesentrada == 6)
+    {
+        diaentrada = diaentrada + 150;
+    }
+
+    diasentrada = diaentrada;
+
+    if(messaida == 1)
+    {
+        if(diasaida > 0 && diasaida <= 30)
+        {
+            diasaida = diasaida - 1;
+        }
+    }
+    if(messaida == 2)
+    {
+        diasaida = diasaida + 31;
+    }
+    if(messaida == 3)
+    {
+        diasaida = diasaida + 59;
+    }
+    if(messaida == 4)
+    {
+        diasaida = diasaida + 89;
+    }
+    if(messaida == 5)
+    {
+        diasaida = diasaida + 119;
+    }
+    if(messaida == 6)
+    {
+        diasaida = diasaida + 150;
+    }
+
+    diassaida = diasaida;
+
+    for(q=diasentrada; q<diassaida; q++ )
+    {
+        for(i=0; i<6; i++)
+        {
+            printf("\n** Andar %d **\n", i+1);
+
             for(j=0; j<=7; j++)
             {
-                if(reservasOcupadas[q] == reservasOcupadas[dias])
-                {
-                    if(reservasOcupadas[i] == reservasOcupadas[andar])
-                    {
-                        if(reservasOcupadas[j] == reservasOcupadas[quartos])
-                        {
-                            if(reservasOcupadas[q][i][j] == 0)
-                            {
-                                return 1;
+                if(quarto > 100 && quarto <= 607){
+                    if(reservasOcupadas[q][i][j] == 0){
+                        if(numcamas > 1 && numcamas <= 3){
+                            if(camas[i] == numcamas){
+                                if(numcamas == 1){
+                                    preco = 117;
+                                }
+                                if(numcamas == 2){
+                                    preco = 150;
+                                }
+                                if(numcamas == 3){
+                                    preco = 180;
+                                }
+                                printf("Dia: %d - Andar: %d - Quarto: %d,  %d cama(s) -- PRECO: RS %d.::\n", q, i+1, j, camas[i], preco);
+                                aux = aux +1;
                             }
-                            else
-                            {
-                                printf("\n\nQuarto ocupado, Cliente: %d\n\n", reservasOcupadas[q][i][j]);
-                                return 0;
-                            }
+                        }else{
+                            return 5;
                         }
+                    }else if(aux == 0){
+                        return 2;
                     }
+                }else{
+                    return 0;
                 }
             }
         }
     }
 }
 
-int confirmarReserva(int andar, int quarto, int mes, int dia, int *reservasOcupadas[181][6][7])
-{
+int excluirReserva(int exclandar, int exclquarto, int exclcpf, int excldiaentrada, int exclmesentrada,int excldiasaida, int exclmessaida,int *reservasOcupadas[181][6][7]){
 
-    int dias, quartos;
-    int novocpf;
-    int q,i,j;
+int confirmarescolha,corridias, corriquartos,confirmacaodias,confirmacaomes,confirmacaoquarto,confirmacaoandar,a,b,c;
 
-    //CORRIGINDO O MÊS
-    andar = andar - 1;
-
-    //CORRIGINDO OS DIAS PARA FAZER FICAR DE 1 A 180
-    if(mes == 1)
-    {
-        if(dia >= 1 && dia <= 31)
-        {
-            dia = dia - 1;
+    if(((excldiaentrada>0)&&(excldiasaida>0))&&((excldiaentrada<=31)&&(excldiasaida<=31))){
+    if(exclmesentrada == 1){
+        excldiaentrada = excldiaentrada;
+        excldiasaida = excldiasaida;
         }
+    if((exclmesentrada == 2)||(exclmessaida==2)){
+        excldiaentrada = excldiaentrada + 31;
+        excldiasaida = excldiasaida + 31;
     }
-    if(mes == 2)
-    {
-        dia = dia + 31;
+    if(exclmesentrada == 3){
+        excldiaentrada = excldiaentrada + 59;
+        excldiasaida = excldiasaida + 59;
     }
-    if(mes == 3)
-    {
-        dia = dia + 59;
+    if(exclmesentrada == 4){
+        excldiaentrada = excldiaentrada + 89;
+        excldiasaida = excldiasaida + 89;
     }
-    if(mes == 4)
-    {
-        dia = dia + 89;
+    if(exclmesentrada == 5){
+        excldiaentrada = excldiaentrada + 119;
+        excldiasaida = excldiasaida + 119;
     }
-    if(mes == 5)
-    {
-        dia = dia + 119;
-    }
-    if(mes == 6)
-    {
-        dia = dia + 150;
-    }
-
-    dias = dia;
-
-    //CORRIGIR NUMERO DO QUARTO 538664004
-    if(quarto == 101)
-    {
-        quartos = 0;
-    }
-    if(quarto == 102)
-    {
-        quartos = 1;
-    }
-    if(quarto == 103)
-    {
-        quartos = 2;
-    }
-    if(quarto == 104)
-    {
-        quartos = 3;
-    }
-    if(quarto == 105)
-    {
-        quartos = 4;
-    }
-    if(quarto == 106)
-    {
-        quartos = 5;
-    }
-    if(quarto == 107)
-    {
-        quartos = 6;
-    }
-    if(quarto == 201)
-    {
-        quartos = 0;
-    }
-    if(quarto == 202)
-    {
-        quartos = 1;
-    }
-    if(quarto == 203)
-    {
-        quartos = 2;
-    }
-    if(quarto == 204)
-    {
-        quartos = 3;
-    }
-    if(quarto == 205)
-    {
-        quartos = 4;
-    }
-    if(quarto == 206)
-    {
-        quartos = 5;
-    }
-    if(quarto == 207)
-    {
-        quartos = 6;
-    }
-    if(quarto == 301)
-    {
-        quartos = 0;
-    }
-    if(quarto == 302)
-    {
-        quartos = 1;
-    }
-    if(quarto == 303)
-    {
-        quartos = 2;
-    }
-    if(quarto == 304)
-    {
-        quartos = 3;
-    }
-    if(quarto == 305)
-    {
-        quartos = 4;
-    }
-    if(quarto == 306)
-    {
-        quartos = 5;
-    }
-    if(quarto == 307)
-    {
-        quartos = 6;
-    }
-    if(quarto == 401)
-    {
-        quartos = 0;
-    }
-    if(quarto == 402)
-    {
-        quartos = 1;
-    }
-    if(quarto == 403)
-    {
-        quartos = 2;
-    }
-    if(quarto == 404)
-    {
-        quartos = 3;
-    }
-    if(quarto == 405)
-    {
-        quartos = 4;
-    }
-    if(quarto == 406)
-    {
-        quartos = 5;
-    }
-    if(quarto == 407)
-    {
-        quartos = 6;
-    }
-    if(quarto == 501)
-    {
-        quartos = 0;
-    }
-    if(quarto == 502)
-    {
-        quartos = 1;
-    }
-    if(quarto == 503)
-    {
-        quartos = 2;
-    }
-    if(quarto == 504)
-    {
-        quartos = 3;
-    }
-    if(quarto == 505)
-    {
-        quartos = 4;
-    }
-    if(quarto == 506)
-    {
-        quartos = 5;
-    }
-    if(quarto == 507)
-    {
-        quartos = 6;
-    }
-    if(quarto == 601)
-    {
-        quartos = 0;
-    }
-    if(quarto == 602)
-    {
-        quartos = 1;
-    }
-    if(quarto == 603)
-    {
-        quartos = 2;
-    }
-    if(quarto == 604)
-    {
-        quartos = 3;
-    }
-    if(quarto == 605)
-    {
-        quartos = 4;
-    }
-    if(quarto == 606)
-    {
-        quartos = 5;
-    }
-    if(quarto == 607)
-    {
-        quartos = 6;
+    if(exclmesentrada == 6){
+        excldiaentrada = excldiaentrada + 150;
+        excldiasaida = excldiasaida + 150;
     }
 
-    printf("\nDigite o CPF.: ");
-    scanf("%d", &novocpf);
+    confirmacaodias=1;
+    }else{
+    confirmacaodias=0;
+    }
 
-    for(q=0; q<= 181; q++ )
-    {
-        for(i=0; i<=6; i++)
+    confirmacaoquarto=0;
+    if(exclquarto == 101){
+        corriquartos = 0;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 102){
+        corriquartos = 1;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 103){
+        corriquartos = 2;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 104){
+        corriquartos = 3;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 105){
+        corriquartos = 4;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 106){
+        corriquartos = 5;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 107){
+        corriquartos = 6;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 201){
+        corriquartos = 0;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 202){
+        corriquartos = 1;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 203){
+        corriquartos = 2;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 204){
+        corriquartos = 3;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 205){
+        corriquartos = 4;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 206){
+        corriquartos = 5;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 207){
+        corriquartos = 6;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 301){
+        corriquartos = 0;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 302){
+        corriquartos = 1;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 303){
+        corriquartos = 2;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 304){
+        corriquartos = 3;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 305){
+        corriquartos = 4;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 306){
+        corriquartos = 5;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 307){
+        corriquartos = 6;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 401){
+        corriquartos = 0;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 402){
+        corriquartos = 1;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 403){
+        corriquartos = 2;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 404){
+        corriquartos = 3;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 405){
+        corriquartos = 4;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 406){
+        corriquartos = 5;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 407){
+        corriquartos = 6;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 501){
+        corriquartos = 0;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 502){
+        corriquartos = 1;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 503){
+        corriquartos = 2;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 504){
+        corriquartos = 3;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 505){
+        corriquartos = 4;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 506){
+        corriquartos = 5;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 507){
+        corriquartos = 6;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 601){
+        corriquartos = 0;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 602){
+        corriquartos = 1;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 603){
+        corriquartos = 2;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 604){
+        corriquartos = 3;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 605){
+        corriquartos = 4;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 606){
+        corriquartos = 5;
+        confirmacaoquarto=1;
+    }
+    if(exclquarto == 607){
+        corriquartos = 6;
+        confirmacaoquarto=1;
+    }
+    if(((exclmesentrada<=0)&&(exclmessaida<=0))||((exclmesentrada>6)&&(exclmessaida>6))){
+        confirmacaodias=0;
+    }
+    if((exclandar<=0)||(exclandar>6)){
+        confirmacaoquarto=0;
+    }
+    if((confirmacaoquarto==0)&&(confirmacaodias==0)){
+    return(3);
+    }
+    if(confirmacaodias==0){
+    return(1);
+    }
+    if(confirmacaoquarto==0){
+    return(2);
+    }
+    if((excldiasaida <= 181) && (excldiaentrada > 0)){
+        for(a=excldiaentrada; a<excldiasaida; a++ )
         {
-            for(j=0; j<=7; j++)
+            for(b=0; b<6; b++)
             {
-                if(reservasOcupadas[q] == reservasOcupadas[dias])
+                for(c=0; c<=7; c++)
                 {
-                    if(reservasOcupadas[i] == reservasOcupadas[andar])
-                    {
-                        if(reservasOcupadas[j] == reservasOcupadas[quartos])
-                        {
-                            reservasOcupadas[q][i][j] = novocpf;
-
-                            if(reservasOcupadas[q][i][j] == novocpf)
-                            {
-
-                                printf("\nCADASTRO DE RESERVA CONCLUIDO COM SUCESSO!\n\n");
-                            }
-                            else
-                            {
-                                printf("\nFalha ao modificar!\n");
-                            }
-                        }
+                    if(reservasOcupadas[a][b][c] == exclcpf){
+                            printf("Deseja excluir a reserva?\n1-Sim\n2-Nao\n");
+                            scanf("%d",&confirmarescolha);
+                    if(confirmarescolha==1){
+                        reservasOcupadas[a][b][c]=0;
+                        return(4);
+                    }
+                    if(confirmarescolha==2){
+                        return(5);
+                    }
+                    }
+                    if(reservasOcupadas[a][b][c]!=exclcpf){
+                        return(6);
                     }
                 }
             }
         }
     }
-}
+
+
+
+
+       //for(a=0; a<= 181; a++ ){
+        //for(b=0; b<=6; b++){
+            //for(c=0; c<=7; c++){
+                    //if(reservasOcupadas[a] == reservasOcupadas[excldia])
+                   // {
+                       // if(reservasOcupadas[b] == reservasOcupadas[exclandar])
+                        //{
+                            //if(reservasOcupadas[c] == reservasOcupadas[exclquarto])
+                           // {
+                                //if(reservasOcupadas[a][b][c] == 0){
+                                    //return(6);
+                               // break;
+                               // }
+                        //    }
+                      //  }
+                  //  }
+           // }
+        //}
+      // }
+ //   if(reservasOcupadas[a][b][c] != 0){
+   //     printf("Deseja excluir a reserva?\n\n1-Sim\n2-Nao\n");
+  /////      scanf("%d",&confirmarescolha);
+   // }
+//
+   // if(confirmarescolha==1){
+    //for(a=0; a<= 181; a++ ){
+      //  for(b=0; b<=6; b++){
+           // for(c=0; c<=7; c++){
+                  //  if(reservasOcupadas[a] == reservasOcupadas[excldia])
+                    //{
+                       // if(reservasOcupadas[b] == reservasOcupadas[exclandar])
+                      //  {
+                           // if(reservasOcupadas[c] == reservasOcupadas[exclquarto])
+                           // {
+                              //  reservasOcupadas[a][b][c] = 0;
+
+                              //  if(reservasOcupadas[a][b][c] == 0){
+
+                                //return(4);
+                              //  }
+                              //  if(reservasOcupadas[a][b][c]!=0){
+                              //      return(5);
+                             //   }
+                          //  }
+                       // }
+                   // }
+                //}
+           // }
+        //}
+   // }
+   // if(confirmarescolha!=1){
+        //return(5);
+   // }
+
+
+    }
 
 typedef struct
 {
-    int cpf[12];
-    int andar, quarto, mes, dia;
+    int cpf;
+    int numcamas, mesentrada, messaida, diaentrada, diasaida, andar, quarto;
 } Cliente;
 
 int main()
 {
+    int excandar,excquarto,exccpf,excdiaentrada,excmesentrada,excdiasaida,excmessaida;
     int *reservasOcupadas[181][6][7];
 
     quartosOcupados(reservasOcupadas);    // chama a funcao de preencher automaticamente os dados
@@ -676,6 +721,8 @@ int main()
     char funcionario[20];
 
     int opcaoMenu = 10, confirMenu;
+
+    int andar,quarto;
 
     Cliente cliente;
 
@@ -687,7 +734,7 @@ int main()
 
     while (opcaoMenu != 0)
     {
-        printf("||======||Bem Vindo: %s - Hotel Madrid||======||\n", funcionario);
+        printf("\n||======||Bem Vindo: %s - Hotel Madrid||======||\n", funcionario);
         //MENU
         printf("\nEscolha uma tarefa:");
         printf("\n\n1 - Fazer Reserva\n2 - Ver Reserva\n3 - Excluir Reserva\n0 - Sair do Programa");
@@ -698,36 +745,69 @@ int main()
         {
         case 1 :
             printf("\n=====|FAZER RESERVA|=====");
-            printf("\nNumero do Andar.: ");
-            scanf("%d%*c", &cliente.andar);
-            printf("Numero do Quarto.: ");
-            scanf("%d%*c", &cliente.quarto);
-            printf("Digite numero do Mes.: ");
-            scanf("%d%*c", &cliente.mes);
-            printf("Digite o Dia.: ");
-            scanf("%d%*c", &cliente.dia);
+            printf("\nNumero de Camas.: ");
+            scanf("%d%*c", &cliente.numcamas);
+            printf("Dia de Entrada.: ");
+            scanf("%d%*c", &cliente.diaentrada);
+            printf("Mes de Entrada.: ");
+            scanf("%d%*c", &cliente.mesentrada);
+            printf("Dia de Saida.: ");
+            scanf("%d%*c", &cliente.diasaida);
+            printf("Mes de Saida.: ");
+            scanf("%d%*c", &cliente.messaida);
+            printf("CPF.: ");
+            scanf("%d%*c", &cliente.cpf);
 
             int retorno;
-            retorno = incluirReserva(cliente.andar, cliente.quarto, cliente.mes, cliente.dia, &reservasOcupadas);
+            retorno = incluirReserva(cliente.numcamas, cliente.diaentrada, cliente.mesentrada, cliente.diasaida, cliente.messaida, cliente.cpf, &reservasOcupadas);
 
             if(retorno == 1)
             {
-                printf("\nQuarto vazio, deseja confirmar a rezerva? ");
-                printf("\n1 - Sim\n2 - Nao");
-                printf("\n\nConfirmar?: ");
-                scanf("%d", &confirMenu);
-
-                switch( confirMenu )
-                {
-                case 1 :
-                    confirmarReserva(cliente.andar, cliente.quarto, cliente.mes, cliente.dia, &reservasOcupadas);
-
-                    break;
-                default :
-                    printf ("\nOpcao Cancelada!\n");
-                }
+                printf("\nPeriodo Invalido.\n");
             }
 
+            if(retorno == 2)
+            {
+                printf("\nNao a quartos disponivel nesse periodo com a quantidade de cama Informada.\n");
+            }
+
+            if(retorno == 3)
+            {
+                printf("\nja possui reserva em pelo menos algum dia do mesmo periodo.\n");
+            }
+
+            if(retorno == 5)
+            {
+                printf("\nNumero de camas fornecidos errados, temos quartos de 1,2 e 3 camas.\n");
+            }
+
+            if(retorno != 0 && retorno != 1 && retorno != 2 && retorno != 3 && retorno != 4){
+                printf("\nConfirmar Reserva?:");
+                printf("\n\n1 - Sim\n2 - Nao");
+                printf("\n\nDigite a opcao: ");
+                scanf("%d", &opcaoMenu);
+
+                switch ( confirMenu ){
+                    case 1 :
+                        printf ("\nDigite o Numero do Andar: ");
+                        scanf("%d", &andar);
+                        printf ("\nDigite o Numero do Quarto: ");
+                        scanf("%d", &quarto);
+
+                        int confirmar;
+                        confirmar = confirmarReserva(andar, quarto, cliente.numcamas, cliente.diaentrada, cliente.mesentrada, cliente.diasaida, cliente.messaida, cliente.cpf, &reservasOcupadas);
+
+                        if(retorno == 0)
+                        {
+                            printf("\nO quarto nao existe.\n");
+                        }
+
+                    break;
+
+                    default :
+                        printf ("Opcao Invalida!\n");
+                }
+            }
             break;
 
         case 2 :
@@ -735,11 +815,46 @@ int main()
             break;
 
         case 3 :
-            printf ("\nCodigo Excluir Reserva\n\n");
-            break;
+           printf("\n=====|EXCLUIR RESERVA|=====");
+            printf("\nNumero do andar.: ");
+            scanf("%d%*c", &excandar);
+            printf("Numero do quarto.: ");
+            scanf("%d%*c", &excquarto);
+            printf("Digite numero do CPF.: ");
+            scanf("%d%*c", &exccpf);
+            printf("Digite o dia de entrada.: ");
+            scanf("%d%*c", &excdiaentrada);
+            printf("Digite o mes de entrada.:");
+            scanf("%d*c", &excmesentrada);
+            printf("Digite o dia de saida.: ");
+            scanf("%d%*c", &excdiasaida);
+            printf("Digite o mes de saida.:");
+            scanf("%d*c", &excmessaida);
 
-        default :
-            printf ("Opcao Invalida!\n");
-        }
+    int exclusao;
+    exclusao=excluirReserva(excandar, excquarto, exccpf, excdiaentrada, excmesentrada,excdiasaida,excmessaida, &reservasOcupadas);
+    if (exclusao==1){
+        printf("\nData invalida");
+    }
+    if (exclusao==2){
+        printf("\nQuarto invalido");
+    }
+     if (exclusao==3){
+        printf("\nQuarto e data invalidos!");
+    }
+     if (exclusao==4){
+        printf("\nExclusao realizada com sucesso!");
+    }
+     if (exclusao==5){
+        printf("\nCancelado!");
+    }
+    if (exclusao==6){
+        printf("\nReserva invalida!\n");
+    }
+         break;
+
+         default:
+           printf ("Opcao Invalida!\n");
+      }
     }
 }
